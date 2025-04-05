@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Документация API заказов</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      background-color: #000;
-      color: #333;
-      padding: 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-    h2 {
-      color: #1e88e5;
-      margin-top: 40px;
-    }
-    h3 {
-      color: #3949ab;
-      margin-top: 24px;
-    }
-    code {
-      padding: 2px 4px;
-      border-radius: 4px;
-      font-family: Consolas, monospace;
-    }
-    pre {
-      
-      padding: 15px;
-      border-radius: 6px;
-      overflow-x: auto;
-    }
-    ul {
-      padding-left: 20px;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>📚 Документация API заказов</h1>
+ <h1>📚 Документация API заказов</h1>
 
 <h2>💡 Примеры приложений</h2>
 
@@ -104,5 +62,3 @@ Content-Type: application/json
 <h3>Удалить заказ</h3>
   <pre><code>DELETE /orders/1</code></pre>
 
-</body>
-</html>
