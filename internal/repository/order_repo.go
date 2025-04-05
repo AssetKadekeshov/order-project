@@ -36,3 +36,21 @@ func (o OrderRepositoryImpl) Update(id int, order *models.OrderEdit) error {
 func (o OrderRepositoryImpl) Delete(orderID int) error {
 	return o.db.Delete(&models.Order{}, orderID).Error
 }
+
+func (o OrderRepositoryImpl) Filter(status, product, search string) ([]models.Order, error) {
+	var orders []models.Order
+	query := o.db.Model(&models.Order{})
+
+	if status != "" {
+		query = query.Where("status = ?", status)
+	}
+	if product != "" {
+		query = query.Where("product = ?", product)
+	}
+	if search != "" {
+		query = query.Where("customer_name ILIKE ?", "%"+search+"%")
+	}
+
+	err := query.Find(&orders).Error
+	return orders, err
+}

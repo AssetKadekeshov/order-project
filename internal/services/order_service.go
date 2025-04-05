@@ -10,6 +10,7 @@ type OrderRepository interface {
 	Create(order *models.Order) error
 	Update(id int, order *models.OrderEdit) error
 	Delete(orderID int) error
+	Filter(status, product, search string) ([]models.Order, error)
 }
 
 type OrderService struct {
@@ -49,4 +50,8 @@ func (s *OrderService) Update(id int, orderEdit *models.OrderEdit) (*models.Orde
 
 func (s *OrderService) DeleteOrder(orderID int) error {
 	return s.repo.Delete(orderID)
+}
+
+func (s *OrderService) FilterOrders(status, product, search string) ([]models.Order, error) {
+	return s.repo.Filter(status, product, search)
 }

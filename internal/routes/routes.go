@@ -21,4 +21,5 @@ func SetupRoutes(r *gin.Engine, db *gorm.DB) {
 		orders.PUT(":id", orderHandler.UpdateOrder)
 		orders.DELETE(":id", orderHandler.DeleteOrder)
 	}
+
 }

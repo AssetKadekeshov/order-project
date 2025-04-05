@@ -17,7 +17,16 @@ type OrderHandler struct {
 }
 
 func (h *OrderHandler) GetAllOrders(c *gin.Context) {
-	orders, _ := h.service.GetAllOrders()
+	status := c.Query("status")
+	product := c.Query("product")
+	search := c.Query("search")
+
+	orders, err := h.service.FilterOrders(status, product, search)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch orders"})
+		return
+	}
+
 	c.JSON(http.StatusOK, orders)
 }
 
