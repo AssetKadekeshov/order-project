@@ -5,8 +5,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
-	"rest-project/internal/models"
-	"rest-project/internal/routes"
+	"order-project/internal/models"
+	"order-project/internal/routes"
 )
 
 func main() {

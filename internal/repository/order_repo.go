@@ -2,7 +2,7 @@ package repository
 
 import (
 	"gorm.io/gorm"
-	"rest-project/internal/models"
+	"order-project/internal/models"
 )
 
 type OrderRepositoryImpl struct {
@@ -30,7 +30,13 @@ func (o OrderRepositoryImpl) Create(order *models.Order) error {
 }
 
 func (o OrderRepositoryImpl) Update(id int, order *models.OrderEdit) error {
-	return o.db.Model(&models.Order{}).Where("id = ?", id).Omit("id, CreatedAt").Updates(order).Error
+	updateData := map[string]interface{}{
+		"customer_name":  order.CustomerName,
+		"products":       order.Products,
+		"total_quantity": len(order.Products),
+		"status":         order.Status,
+	}
+	return o.db.Model(&models.Order{}).Where("id = ?", id).Updates(updateData).Error
 }
 
 func (o OrderRepositoryImpl) Delete(orderID int) error {
@@ -45,7 +51,7 @@ func (o OrderRepositoryImpl) Filter(status, product, search string) ([]models.Or
 		query = query.Where("status = ?", status)
 	}
 	if product != "" {
-		query = query.Where("product = ?", product)
+		query = query.Where("? = ANY(products)", product)
 	}
 	if search != "" {
 		query = query.Where("customer_name ILIKE ?", "%"+search+"%")

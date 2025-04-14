@@ -3,9 +3,9 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
-	"rest-project/internal/delivery"
-	"rest-project/internal/repository"
-	"rest-project/internal/services"
+	"order-project/internal/delivery"
+	"order-project/internal/repository"
+	service "order-project/internal/services"
 )
 
 func SetupRoutes(r *gin.Engine, db *gorm.DB) {
@@ -21,5 +21,4 @@ func SetupRoutes(r *gin.Engine, db *gorm.DB) {
 		orders.PUT(":id", orderHandler.UpdateOrder)
 		orders.DELETE(":id", orderHandler.DeleteOrder)
 	}
-
 }

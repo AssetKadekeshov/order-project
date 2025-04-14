@@ -1,9 +1,13 @@
 package models
 
+import (
+	"github.com/lib/pq"
+)
+
 type Order struct {
-	Id           int    `json:"id"`
-	CustomerName string `json:"customerName"`
-	Product      string `json:"product"`
-	Quantity     int    `json:"quantity"`
-	Status       string `json:"status"`
+	Id            int            `json:"id"`
+	CustomerName  string         `json:"customerName"`
+	Products      pq.StringArray `json:"products" gorm:"type:text[]"`
+	TotalQuantity int            `json:"totalQuantity"`
+	Status        string         `json:"status"`
 }

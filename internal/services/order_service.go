@@ -1,7 +1,7 @@
 package service
 
 import (
-	"rest-project/internal/models"
+	"order-project/internal/models"
 )
 
 type OrderRepository interface {
@@ -29,12 +29,12 @@ func (s *OrderService) GetOrderByID(id int) (*models.Order, error) {
 	return s.repo.GetById(id)
 }
 
-func (s *OrderService) Create(customerName, product string, quantity int, status string) (*models.Order, error) {
+func (s *OrderService) Create(customerName string, products []string, status string) (*models.Order, error) {
 	order := &models.Order{
-		CustomerName: customerName,
-		Product:      product,
-		Quantity:     quantity,
-		Status:       status,
+		CustomerName:  customerName,
+		Products:      products,
+		TotalQuantity: len(products),
+		Status:        status,
 	}
 	err := s.repo.Create(order)
 	return order, err

@@ -3,8 +3,8 @@ package delivery
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"rest-project/internal/models"
-	"rest-project/internal/services"
+	"order-project/internal/models"
+	"order-project/internal/services"
 	"strconv"
 )
 
@@ -54,7 +54,7 @@ func (h *OrderHandler) CreateOrder(c *gin.Context) {
 		return
 	}
 
-	newOrder, err := h.service.Create(orderCreate.CustomerName, orderCreate.Product, orderCreate.Quantity, orderCreate.Status)
+	newOrder, err := h.service.Create(orderCreate.CustomerName, orderCreate.Products, orderCreate.Status)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create order"})
 		return
